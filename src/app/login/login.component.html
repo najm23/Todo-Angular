@@ -5,10 +5,20 @@
     Name :
     <input type="text" name="username" [(ngModel)]="username" />
     Password :
-    <input type="password" [(ngModel)]="password" />
+    <input
+      type="password"
+      [(ngModel)]="password"
+      (keyup.enter)="handleLogin()"
+    />
 
     <!--Password : {{ password }}-->
-    <button class="btn btn-success" (click)="handleLogin()" name="Login">
+    <button
+      type="submit"
+      style="margin-left: 10px"
+      class="btn btn-success"
+      (click)="handleLogin()"
+      name="Login"
+    >
       Login
     </button>
   </div>

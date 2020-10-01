@@ -2,17 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { HardcodedAuthenticationService } from '../service/hardcoded-authentication.service';
 
 @Component({
-  selector: 'app-menu',
-  templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.css'],
+  selector: 'app-logout',
+  templateUrl: './logout.component.html',
+  styleUrls: ['./logout.component.css'],
 })
-export class MenuComponent implements OnInit {
-  isUserLoggedIn = false;
+export class LogoutComponent implements OnInit {
   constructor(
     private hardCodedAuthenticationService: HardcodedAuthenticationService
   ) {}
 
   ngOnInit(): void {
-    this.isUserLoggedIn = this.hardCodedAuthenticationService.isUserLoggedIn();
+    this.hardCodedAuthenticationService.logOut();
   }
 }
