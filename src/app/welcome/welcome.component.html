@@ -4,11 +4,22 @@
 </div>
 
 <div class="container">
-  Click here to get a customized message
+  <h4>Click here to get a customized message</h4>
   <button class="btn btn-success" (click)="getWelcomeMessage()">Get Welcome Message</button>
 </div>
 
 <div class="container" *ngIf="welcomeMessageFromService">
-  <H2>Your customized Welcome Message:</H2>
+  <H6>Your customized Welcome Message:</H6>
   {{welcomeMessageFromService}}
+</div>
+
+<div class="container">
+  <h4>Click here to get a customized message with parameter</h4>
+  <button (click)="getWelcomeMessageWithParameter()" class="btn btn-success">Get Welcome Message with parameters
+  </button>
+</div>
+
+<div *ngIf="welcomeMessageFromServiceWithParam" class="container">
+  <H6>Your customized Welcome Message with parameter:</H6>
+  {{welcomeMessageFromServiceWithParam}}
 </div>

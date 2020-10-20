@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {TodoDataService} from '../service/data/todo-data.service';
+import {Router} from '@angular/router';
 
 export class Todo {
   constructor(
@@ -15,18 +17,39 @@ export class Todo {
   styleUrls: ['./list-todos.component.css'],
 })
 export class ListTodosComponent implements OnInit {
-  todos = [
-    new Todo(1, 'Learn to dance', false, new Date()),
-    new Todo(2, 'Became an expert at Angular', false, new Date()),
-    new Todo(3, 'Became an expert at Java', false, new Date()),
-    new Todo(4, 'Became an expert at Spring', false, new Date()),
-    new Todo(5, 'Became an expert at Spring Boot', false, new Date()),
-    new Todo(6, 'Became an expert at Spring security', false, new Date()),
-    new Todo(7, 'Became an expert at Hibernate', false, new Date()),
-    new Todo(8, 'Became an expert at Spring Restfull API', false, new Date()),
-  ];
+  todos: Todo[];
+  message: string;
 
-  constructor() {}
+  constructor(
+    private  todoService: TodoDataService,
+    private router: Router
+  ) {
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.refreshTodos();
+  }
+
+  deleteTodo(id): void {
+    this.todoService.deleteTodo('najm', id).subscribe(
+      response => {
+        console.log(response);
+        this.message = `Todo ${id} deleted Successfully !`;
+        this.refreshTodos();
+      }
+    );
+  }
+
+  updateTodo(id): void {
+    this.router.navigate(['todos', id]);
+  }
+
+  refreshTodos(): void {
+    this.todoService.retreiveAllTodosService('najm').subscribe(
+      response => {
+        console.log(response);
+        this.todos = response;
+      }
+    );
+  }
 }
