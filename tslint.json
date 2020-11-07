@@ -147,6 +147,10 @@
       "element",
       "app",
       "kebab-case"
+    ],
+    "triple-equals": [
+      false,
+      "allow-undefined-check"
     ]
   }
 }
