@@ -8,7 +8,7 @@
     <input
       type="password"
       [(ngModel)]="password"
-      (keyup.enter)="handleLogin()"
+      (keyup.enter)="handleBasicAuthLogin()"
     />
 
     <!--Password : {{ password }}-->
@@ -16,7 +16,7 @@
       type="submit"
       style="margin-left: 10px"
       class="btn btn-success"
-      (click)="handleLogin()"
+      (click)="handleBasicAuthLogin()"
       name="Login"
     >
       Login
