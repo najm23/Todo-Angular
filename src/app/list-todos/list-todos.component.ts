@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {TodoDataService} from '../service/data/todo-data.service';
 import {Router} from '@angular/router';
+import {AUTHENTICATED_USER} from '../app.constants';
 
 export class Todo {
   constructor(
@@ -31,7 +32,7 @@ export class ListTodosComponent implements OnInit {
   }
 
   deleteTodo(id): void {
-    this.todoService.deleteTodo('najm', id).subscribe(
+    this.todoService.deleteTodo(sessionStorage.getItem(AUTHENTICATED_USER), id).subscribe(
       response => {
         console.log(response);
         this.message = `Todo ${id} deleted Successfully !`;
@@ -45,7 +46,7 @@ export class ListTodosComponent implements OnInit {
   }
 
   refreshTodos(): void {
-    this.todoService.retreiveAllTodosService('najm').subscribe(
+    this.todoService.retreiveAllTodosService(sessionStorage.getItem(AUTHENTICATED_USER)).subscribe(
       response => {
         console.log(response);
         this.todos = response;
